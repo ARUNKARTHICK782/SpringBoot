@@ -4,9 +4,7 @@ import com.example.SpringBoot.Repository.NotesRepository;
 import com.example.SpringBoot.entity.Note;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
-import java.util.Optional;
 
 @Component
 public class NotesService {
@@ -28,10 +26,15 @@ public class NotesService {
 
 
     public void updateNote(Note note,Long id){
+//            notesRepository.updateNote(note.getTitle(),note.getDescription(),id);
         Note noteToBeUpdated =   notesRepository.findById(id).orElse(null);
         noteToBeUpdated.setTitle(note.getTitle());
         noteToBeUpdated.setDescription(note.getDescription());
         notesRepository.save(noteToBeUpdated);
+    }
+
+    public List<Note> findByTitleContaining(String term){
+        return notesRepository.findByTitleContaining(term);
     }
 
 }

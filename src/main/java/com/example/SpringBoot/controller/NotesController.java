@@ -1,11 +1,8 @@
-package com.example.SpringBoot.notes;
+package com.example.SpringBoot.controller;
 
 import com.example.SpringBoot.Service.NotesService;
 import com.example.SpringBoot.entity.Note;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.actuate.endpoint.annotation.Endpoint;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,6 +17,12 @@ public class NotesController {
     @GetMapping
     public List<Note> get(){
         return notesService.showNotes();
+    }
+
+
+    @GetMapping(value = "/titleContains")
+    public List<Note> getByTitleContaining(@RequestParam String term){
+        return notesService.findByTitleContaining(term);
     }
 
     @PostMapping()
