@@ -1,6 +1,7 @@
 package com.example.SpringBoot.config;
 
 import com.example.SpringBoot.Service.UserService;
+import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,27 +17,29 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
+
 public class CustomAuthenticationProvider implements AuthenticationProvider {
 
 
+    @Autowired
     UserDetailsService userDetailsService;
 
+    @Autowired
     PasswordEncoder passwordEncoder;
 
-
-    CustomAuthenticationProvider(UserDetailsService userDetailsService,PasswordEncoder passwordEncoder){
-        System.out.println("In custom authentication provider");
-        this.userDetailsService = userDetailsService;
-        this.passwordEncoder = passwordEncoder;
-    }
+//
+//    CustomAuthenticationProvider(UserDetailsService userDetailsService,PasswordEncoder passwordEncoder){
+//        System.out.println("In custom authentication provider");
+//        this.userDetailsService = userDetailsService;
+//        this.passwordEncoder = passwordEncoder;
+//    }
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        System.out.println("In custom authentication provider");
+        System.out.println("In custom authentication provider authenticate method ✅");
 
         String username = authentication.getName();
         String password = authentication.getCredentials().toString();
-
 
         UserDetails u = userDetailsService.loadUserByUsername(username);
 

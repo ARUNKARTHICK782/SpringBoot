@@ -2,6 +2,9 @@ package com.example.SpringBoot.controller;
 
 import com.example.SpringBoot.Service.NotesService;
 import com.example.SpringBoot.entity.Note;
+import com.example.SpringBoot.jwt.JWTGenerator;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,8 +17,9 @@ public class NotesController {
     @Autowired
     NotesService notesService;
 
+
     @GetMapping
-    public List<Note> get(){
+    public List<Note> get(HttpServletRequest request, HttpServletResponse response){
         return notesService.showNotes();
     }
 
