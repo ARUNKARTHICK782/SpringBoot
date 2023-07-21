@@ -1,11 +1,7 @@
 package com.example.SpringBoot.Repository;
 
-import com.example.SpringBoot.entity.Note;
-import jakarta.transaction.Transactional;
-import org.aspectj.weaver.ast.Not;
+import com.example.SpringBoot.Entity.Note;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 

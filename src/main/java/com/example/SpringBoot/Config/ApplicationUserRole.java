@@ -1,4 +1,4 @@
-package com.example.SpringBoot.config;
+package com.example.SpringBoot.Config;
 
 import com.google.common.collect.Sets;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -6,7 +6,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static com.example.SpringBoot.config.ApplicationUserPermissions.*;
+import static com.example.SpringBoot.Config.ApplicationUserPermissions.*;
 
 public enum ApplicationUserRole {
     ADMIN(Sets.newHashSet(READ,WRITE)),

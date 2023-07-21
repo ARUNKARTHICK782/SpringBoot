@@ -1,8 +1,8 @@
 package com.example.SpringBoot.Service;
 
 import com.example.SpringBoot.Repository.UserRepository;
-import com.example.SpringBoot.config.ApplicationUserRole;
-import com.example.SpringBoot.entity.User;
+import com.example.SpringBoot.Config.ApplicationUserRole;
+import com.example.SpringBoot.Entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,10 +12,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-import static com.example.SpringBoot.config.ApplicationUserRole.*;
+import static com.example.SpringBoot.Config.ApplicationUserRole.*;
 
 @Component
 public class UserService implements UserDetailsService {

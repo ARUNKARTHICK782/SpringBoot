@@ -1,7 +1,7 @@
 package com.example.SpringBoot.Service;
 
 import com.example.SpringBoot.Repository.NotesRepository;
-import com.example.SpringBoot.entity.Note;
+import com.example.SpringBoot.Entity.Note;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import java.util.List;

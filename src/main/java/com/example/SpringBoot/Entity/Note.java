@@ -1,9 +1,7 @@
-package com.example.SpringBoot.entity;
+package com.example.SpringBoot.Entity;
 
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.Data;
 
 @Entity
 @Table(name = "Notes")

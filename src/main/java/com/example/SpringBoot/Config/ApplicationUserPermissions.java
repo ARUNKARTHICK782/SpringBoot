@@ -1,4 +1,4 @@
-package com.example.SpringBoot.config;
+package com.example.SpringBoot.Config;
 
 public enum ApplicationUserPermissions{
     READ("READ"),

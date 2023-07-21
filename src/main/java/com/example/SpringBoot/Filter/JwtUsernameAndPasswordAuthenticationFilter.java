@@ -1,36 +1,22 @@
-package com.example.SpringBoot.jwt;
+package com.example.SpringBoot.Filter;
 
-import com.example.SpringBoot.Model.UsernameAndPasswordAuthenticationRequest;
 import com.example.SpringBoot.Service.UserService;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.security.Keys;
+import com.example.SpringBoot.Jwt.JWTService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.actuate.endpoint.SecurityContext;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.time.LocalDate;
-import java.util.List;
 import java.util.Set;
-import java.util.SimpleTimeZone;
 
 public class JwtUsernameAndPasswordAuthenticationFilter  extends OncePerRequestFilter {
 
@@ -41,7 +27,7 @@ public class JwtUsernameAndPasswordAuthenticationFilter  extends OncePerRequestF
     private UserService userService;
 
     @Autowired
-    private JWTGenerator jwtGenerator;
+    private JWTService jwtService;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -65,10 +51,10 @@ public class JwtUsernameAndPasswordAuthenticationFilter  extends OncePerRequestF
            return;
         }
 
-        jwtGenerator.validateToken(token);
+        jwtService.validateToken(token);
 
-        Set<SimpleGrantedAuthority> role = jwtGenerator.getRoleFromToken(token);
-        String username = jwtGenerator.getUsernameFromToken(token);
+        Set<SimpleGrantedAuthority> role = jwtService.getRoleFromToken(token);
+        String username = jwtService.getUsernameFromToken(token);
 
 
         System.out.println("ROLES : "+role);

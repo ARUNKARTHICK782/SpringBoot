@@ -1,13 +1,12 @@
-package com.example.SpringBoot.config;
+package com.example.SpringBoot.Config;
 
 
 import com.example.SpringBoot.Service.UserService;
-import com.example.SpringBoot.jwt.JwtUsernameAndPasswordAuthenticationFilter;
+import com.example.SpringBoot.Filter.JwtUsernameAndPasswordAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -19,8 +18,8 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 
-import static com.example.SpringBoot.config.ApplicationUserPermissions.*;
-import static com.example.SpringBoot.config.ApplicationUserRole.*;
+import static com.example.SpringBoot.Config.ApplicationUserPermissions.*;
+import static com.example.SpringBoot.Config.ApplicationUserRole.*;
 
 
 

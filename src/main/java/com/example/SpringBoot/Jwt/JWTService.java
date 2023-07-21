@@ -1,14 +1,9 @@
-package com.example.SpringBoot.jwt;
+package com.example.SpringBoot.Jwt;
 
-import com.example.SpringBoot.config.ApplicationUserRole;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
-import org.checkerframework.checker.units.qual.A;
-import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;
 import org.springframework.security.authentication.AuthenticationCredentialsNotFoundException;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,14 +12,11 @@ import org.springframework.stereotype.Component;
 import java.security.Key;
 import java.sql.Date;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalUnit;
 import java.util.*;
 import java.util.stream.Collectors;
 
 @Component
-public class JWTGenerator {
+public class JWTService {
     private static final Key key = Keys.hmacShaKeyFor("myjwttokensecretkeymyjwttokensecretkeymyjwttokensecretkeymyjwttokensecretkey".getBytes());
 
     public String generateToken(UserDetails userDetails) {

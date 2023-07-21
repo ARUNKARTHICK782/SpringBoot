@@ -1,8 +1,7 @@
-package com.example.SpringBoot.controller;
+package com.example.SpringBoot.Controller;
 
 import com.example.SpringBoot.Service.NotesService;
-import com.example.SpringBoot.entity.Note;
-import com.example.SpringBoot.jwt.JWTGenerator;
+import com.example.SpringBoot.Entity.Note;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;

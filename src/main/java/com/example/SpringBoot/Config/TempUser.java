@@ -1,4 +1,4 @@
-package com.example.SpringBoot.config;
+package com.example.SpringBoot.Config;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
