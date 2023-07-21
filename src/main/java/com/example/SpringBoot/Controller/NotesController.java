@@ -4,7 +4,10 @@ import com.example.SpringBoot.Service.NotesService;
 import com.example.SpringBoot.Entity.Note;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +22,8 @@ public class NotesController {
 
     @GetMapping
     public List<Note> get(HttpServletRequest request, HttpServletResponse response){
+        System.out.println("Authentication : ");
+        System.out.println(SecurityContextHolder.getContext().getAuthentication().getAuthorities());
         return notesService.showNotes();
     }
 

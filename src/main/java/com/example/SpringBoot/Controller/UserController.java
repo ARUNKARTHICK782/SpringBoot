@@ -2,11 +2,14 @@ package com.example.SpringBoot.Controller;
 
 
 import com.example.SpringBoot.Model.ResponseMessage;
+import com.example.SpringBoot.Model.UserModel;
 import com.example.SpringBoot.Service.UserService;
 import com.example.SpringBoot.Entity.User;
 import com.example.SpringBoot.Jwt.JWTService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +22,12 @@ public class UserController {
 
     @Autowired
     private JWTService jwtService;
+
+
+    @GetMapping("/name")
+    public String getName(Authentication authentication){
+        return "Hello "+authentication.getName();
+    }
 
 
 

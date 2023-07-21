@@ -6,6 +6,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -19,9 +20,6 @@ import java.io.IOException;
 import java.util.Set;
 
 public class JwtUsernameAndPasswordAuthenticationFilter  extends OncePerRequestFilter {
-
-    @Autowired
-    private AuthenticationManager authenticationManager;
 
     @Autowired
     private UserService userService;
@@ -51,18 +49,25 @@ public class JwtUsernameAndPasswordAuthenticationFilter  extends OncePerRequestF
            return;
         }
 
-        jwtService.validateToken(token);
+        try{
+            jwtService.validateToken(token);
+        }
+        catch (Exception e){
+            response.sendError(HttpServletResponse.SC_NOT_ACCEPTABLE,e.getMessage());
+        }
 
-        Set<SimpleGrantedAuthority> role = jwtService.getRoleFromToken(token);
+
+        Set<SimpleGrantedAuthority> authorities = jwtService.getRoleFromToken(token);
         String username = jwtService.getUsernameFromToken(token);
 
 
-        System.out.println("ROLES : "+role);
+        System.out.println("Authorities and Roles : "+authorities);
         System.out.println("USERNAME : "+username);
 
         Authentication authentication  = new UsernamePasswordAuthenticationToken(
-                username,null,role
+                username,null,authorities
         );
+
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 

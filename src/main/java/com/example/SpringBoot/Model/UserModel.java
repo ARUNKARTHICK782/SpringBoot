@@ -1,22 +1,37 @@
 package com.example.SpringBoot.Model;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Set;
 
 public class UserModel implements UserDetails {
+    Long id;
     String username;
     String password;
     String role;
-    boolean isAccountExpired;
+    boolean isAccountNonExpired;
+    boolean isAccountNonLocked;
+    boolean isCredentialsNonExpired;
+    boolean isEnabled;
+    Set<SimpleGrantedAuthority> authorities;
 
-    Long id;
 
-    public UserModel(String username, String password) {
+    public UserModel(String username, String password, String role,Set<SimpleGrantedAuthority> authorities) {
         this.username = username;
         this.password = password;
+        this.role = role;
+        this.isAccountNonExpired = true;
+        this.isAccountNonLocked = true;
+        this.isCredentialsNonExpired = true;
+        this.isEnabled = true;
+        this.authorities = authorities;
     }
+
+
+
 
     public Long getId() {
         return id;
@@ -26,49 +41,55 @@ public class UserModel implements UserDetails {
         this.id = id;
     }
 
-    @Override
-    public String toString() {
-        return "UserModel{" +
-                "username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+    public String getRole() {
+        return role;
     }
 
-    public String getUsername() {
-        return username;
+    public void setRole(String role) {
+        this.role = role;
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return isAccountNonExpired;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return isAccountNonLocked;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return isCredentialsNonExpired;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
+        return isEnabled;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return authorities;
     }
 
+    public void setAuthorities(Set<SimpleGrantedAuthority> authorities) {
+        this.authorities = authorities;
+    }
+
+    @Override
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setPassword(String password) {

@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 public class JWTService {
     private static final Key key = Keys.hmacShaKeyFor("myjwttokensecretkeymyjwttokensecretkeymyjwttokensecretkeymyjwttokensecretkey".getBytes());
 
+
     public String generateToken(UserDetails userDetails) {
 
         List<String> roles = new ArrayList<>();

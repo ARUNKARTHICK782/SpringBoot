@@ -1,6 +1,7 @@
 package com.example.SpringBoot.Config;
 
 
+import com.example.SpringBoot.Model.UsernameAndPasswordAuthenticationRequest;
 import com.example.SpringBoot.Service.UserService;
 import com.example.SpringBoot.Filter.JwtUsernameAndPasswordAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
@@ -11,6 +12,7 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -61,10 +63,10 @@ public class ApplicationSecurityConfig {
     }
 
 
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
-    }
+//    @Bean
+//    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+//        return authenticationConfiguration.getAuthenticationManager();
+//    }
 
     @Bean
     public JwtUsernameAndPasswordAuthenticationFilter jwtUsernameAndPasswordAuthenticationFilter(){
@@ -88,7 +90,8 @@ public class ApplicationSecurityConfig {
                                 .requestMatchers(HttpMethod.POST,"/api/v1/notes").hasAuthority(WRITE.getPermission())
                                 .requestMatchers(HttpMethod.DELETE,"/api/v1/notes").hasAuthority(WRITE.getPermission())
                                 .requestMatchers(HttpMethod.PUT,"/api/v1/notes").hasAuthority(WRITE.getPermission())
-                                .requestMatchers(HttpMethod.GET,"/api/v1/notes").hasRole(READ.getPermission())
+                                .requestMatchers(HttpMethod.GET,"/api/v1/notes").hasAuthority(READ.getPermission())
+                                .requestMatchers(HttpMethod.GET,"/api/v1/users/name").hasRole(USER.name())
                                 .requestMatchers("/api/v1/admin").hasRole(ADMIN.name())
                                 .anyRequest().permitAll()
                 )
