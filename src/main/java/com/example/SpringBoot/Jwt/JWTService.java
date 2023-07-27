@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
 import java.security.Key;
+import java.security.SignatureException;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.*;
@@ -44,14 +45,17 @@ public class JWTService {
 
     public boolean validateToken(String token) {
         try {
+            System.out.println("In validate");
             Jwts.parser()
                     .setSigningKey(key)
                     .parseClaimsJws(token);
             System.out.println("Token validated successfully!!!!");
             return true;
 
-        } catch (Exception ex) {
-            throw new AuthenticationCredentialsNotFoundException("JWT was expired or incorrect",ex.fillInStackTrace());
+        }
+        catch (Exception ex) {
+//            throw new AuthenticationCredentialsNotFoundException("JWT was expired or incorrect",ex.fillInStackTrace());
+            return false;
         }
     }
 

@@ -17,6 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
+import java.security.SignatureException;
 import java.util.Set;
 
 public class JwtUsernameAndPasswordAuthenticationFilter  extends OncePerRequestFilter {
